@@ -7,114 +7,114 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace pizza_api.Migrations
+namespace ContosoPizza.Migrations
 {
-    [DbContext(typeof(PizzaContext))]
-    partial class PizzaContextModelSnapshot : ModelSnapshot
-    {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
+	[DbContext(typeof(PizzaContext))]
+	partial class PizzaContextModelSnapshot : ModelSnapshot
+	{
+		protected override void BuildModel(ModelBuilder modelBuilder)
+		{
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
+			modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
 
-            modelBuilder.Entity("ContosoPizza.Models.Pizza", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+			modelBuilder.Entity("ContosoPizza.Models.Pizza", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("TEXT");
 
-                    b.Property<int?>("SauceId")
-                        .HasColumnType("INTEGER");
+					b.Property<int?>("SauceId")
+						.HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.HasIndex("SauceId");
+					b.HasIndex("SauceId");
 
-                    b.ToTable("Pizzas");
-                });
+					b.ToTable("Pizzas");
+				});
 
-            modelBuilder.Entity("ContosoPizza.Models.Sauce", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+			modelBuilder.Entity("ContosoPizza.Models.Sauce", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsVegan")
-                        .HasColumnType("INTEGER");
+					b.Property<bool>("IsVegan")
+						.HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.ToTable("Sauces");
-                });
+					b.ToTable("Sauces");
+				});
 
-            modelBuilder.Entity("ContosoPizza.Models.Topping", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+			modelBuilder.Entity("ContosoPizza.Models.Topping", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Calories")
-                        .HasColumnType("TEXT");
+					b.Property<decimal>("Calories")
+						.HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.ToTable("Toppings");
-                });
+					b.ToTable("Toppings");
+				});
 
-            modelBuilder.Entity("PizzaTopping", b =>
-                {
-                    b.Property<int>("PizzasId")
-                        .HasColumnType("INTEGER");
+			modelBuilder.Entity("PizzaTopping", b =>
+				{
+					b.Property<int>("PizzasId")
+						.HasColumnType("INTEGER");
 
-                    b.Property<int>("ToppingsId")
-                        .HasColumnType("INTEGER");
+					b.Property<int>("ToppingsId")
+						.HasColumnType("INTEGER");
 
-                    b.HasKey("PizzasId", "ToppingsId");
+					b.HasKey("PizzasId", "ToppingsId");
 
-                    b.HasIndex("ToppingsId");
+					b.HasIndex("ToppingsId");
 
-                    b.ToTable("PizzaTopping");
-                });
+					b.ToTable("PizzaTopping");
+				});
 
-            modelBuilder.Entity("ContosoPizza.Models.Pizza", b =>
-                {
-                    b.HasOne("ContosoPizza.Models.Sauce", "Sauce")
-                        .WithMany()
-                        .HasForeignKey("SauceId");
+			modelBuilder.Entity("ContosoPizza.Models.Pizza", b =>
+				{
+					b.HasOne("ContosoPizza.Models.Sauce", "Sauce")
+						.WithMany()
+						.HasForeignKey("SauceId");
 
-                    b.Navigation("Sauce");
-                });
+					b.Navigation("Sauce");
+				});
 
-            modelBuilder.Entity("PizzaTopping", b =>
-                {
-                    b.HasOne("ContosoPizza.Models.Pizza", null)
-                        .WithMany()
-                        .HasForeignKey("PizzasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+			modelBuilder.Entity("PizzaTopping", b =>
+				{
+					b.HasOne("ContosoPizza.Models.Pizza", null)
+						.WithMany()
+						.HasForeignKey("PizzasId")
+						.OnDelete(DeleteBehavior.Cascade)
+						.IsRequired();
 
-                    b.HasOne("ContosoPizza.Models.Topping", null)
-                        .WithMany()
-                        .HasForeignKey("ToppingsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+					b.HasOne("ContosoPizza.Models.Topping", null)
+						.WithMany()
+						.HasForeignKey("ToppingsId")
+						.OnDelete(DeleteBehavior.Cascade)
+						.IsRequired();
+				});
 #pragma warning restore 612, 618
-        }
-    }
+		}
+	}
 }
